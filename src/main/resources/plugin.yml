@@ -1,0 +1,8 @@
+author: DerFlash
+database: true
+generator: http://dinnerbone.com/minecraft/tools/pluginator/
+main: de.derflash.plugins.emeraldbank.EmeraldBank
+name: EmeraldBank
+startup: postworld
+url: http://www.cube-nation.de/
+version: '1.0'
