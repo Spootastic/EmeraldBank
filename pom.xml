@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.derflash.plugins.emeraldbank</groupId>
     <artifactId>EmeraldBank</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>EmeraldBank</name>
     <url>http://www.cube-nation.de/</url>
     <repositories>

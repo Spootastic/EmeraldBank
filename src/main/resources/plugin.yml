@@ -5,4 +5,4 @@ main: de.derflash.plugins.emeraldbank.EmeraldBank
 name: EmeraldBank
 startup: postworld
 url: http://www.cube-nation.de/
-version: '1.0'
+version: '1.0-SNAPSHOT'
