@@ -181,25 +181,25 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 					
 					Player toPlayer = getServer().getPlayer(bPlayer.getTransferPlayer());
 					if (toPlayer == null || !toPlayer.isOnline()) {
-				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Diese Person ist leider gerade nicht mehr online! Versuche es später noch einmal!");
+				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Diese Person ist leider gerade nicht mehr online! Versuche es sp√§ter noch einmal!");
 						return;
 					}
 					
 					EconomyResponse resp = economy().withdrawPlayer(player.getName(), bPlayer.getTransferTemp());
 					if (!resp.transactionSuccess()) {
-				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Du hast nicht genügend " + economy().currencyNamePlural() + " auf der Bank für eine Überweisung dieser Größe!");
+				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Du hast nicht gen√ºgend " + economy().currencyNamePlural() + " auf der Bank f√ºr eine √úberweisung dieser Gr√∂√üe!");
 						return;
 					}
 
 					resp = economy().depositPlayer(bPlayer.getTransferPlayer(), bPlayer.getTransferTemp());
 					if (!resp.transactionSuccess()) {
-				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Die Überweisung schlug fehl. Eventuell besitzt der Spieler noch kein Bankfach? Wende dich eventuell an ein Staff-Mitglied. (Fehler: " + resp.errorMessage +  ")");
+				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Die √úberweisung schlug fehl. Eventuell besitzt der Spieler noch kein Bankfach? Wende dich eventuell an ein Staff-Mitglied. (Fehler: " + resp.errorMessage +  ")");
 						economy().depositPlayer(player.getName(), bPlayer.getTransferTemp());
 						return;
 					}
 					
-			    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "Überweisung erfolgreich ausgeführt!");
-			    	toPlayer.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + player.getDisplayName() + " hat dir gerade " + economy().format(bPlayer.getTransferTemp()) + " auf dein Bankkonto überwiesen!");
+			    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "√úberweisung erfolgreich ausgef√ºhrt!");
+			    	toPlayer.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + player.getDisplayName() + " hat dir gerade " + economy().format(bPlayer.getTransferTemp()) + " auf dein Bankkonto √ºberwiesen!");
 
 					bPlayer.setTransferTemp(0);
 					bPlayer.setTransferPlayer(null);
@@ -212,7 +212,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 					}
 					
 					bPlayer.setTransferPlayer(toPlayer.getName());
-			    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "Überweisung von " + economy().format(bPlayer.getTransferTemp()) + " an " + toPlayer.getName() + ". Zum Bestätigen, schreibe nun einfach 'ok'!");
+			    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "√úberweisung von " + economy().format(bPlayer.getTransferTemp()) + " an " + toPlayer.getName() + ". Zum Best√§tigen, schreibe nun einfach 'ok'!");
 					
 				}
 				
@@ -293,7 +293,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 				    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "Ausgezahlt: " + sa.getAmountAsString());
 
 					} else {
-				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Achtung! Du hast nicht genügend " + economy().currencyNamePlural() + " auf der Bank für diese Auszahlung.");
+				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Achtung! Du hast nicht gen√ºgend " + economy().currencyNamePlural() + " auf der Bank f√ºr diese Auszahlung.");
 		
 					}
 						
@@ -329,7 +329,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 										ItemStack tauschLeft = tausch.values().iterator().next();
 										inv.removeItem(new ItemStack(Material.EMERALD, needToAdd - tauschLeft.getAmount()));
 										
-								    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Achtung! Schaffe bitte etwas Platz im Inventar für die Umwandlung von Smaragdblöcken zu Smaragden.");
+								    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Achtung! Schaffe bitte etwas Platz im Inventar f√ºr die Umwandlung von Smaragdbl√∂cken zu Smaragden.");
 								    	return;
 									}
 									
@@ -363,7 +363,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 					}
 					
 					if (amountCheck > 0) {
-				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Achtung! Du hast nicht genügend Emeralds im Inventar für für eine Einzahlung dieser Größe! Es fehlen dir noch " + new SmartAmount(amountCheck).getAmountAsString());
+				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Achtung! Du hast nicht gen√ºgend Emeralds im Inventar f√ºr f√ºr eine Einzahlung dieser Gr√∂√üe! Es fehlen dir noch " + new SmartAmount(amountCheck).getAmountAsString());
 
 					} else {
 						if (blocksFound > 0) inv.removeItem(new ItemStack(Material.EMERALD_BLOCK, blocksFound));
@@ -380,12 +380,12 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 				
 				case 3: {
 					if (!economy().has(player.getName(), messageValue)) {
-				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Du hast nicht genügend " + economy().currencyNamePlural() + " auf der Bank für eine Überweisung dieser Größe!");
+				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + "Du hast nicht gen√ºgend " + economy().currencyNamePlural() + " auf der Bank f√ºr eine √úberweisung dieser Gr√∂√üe!");
 				    	return;
 					}
 					
 					bPlayer.setTransferTemp(messageValue);
-			    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "Überweisungsbetrag: " + economy().format(messageValue) + ". An wen sollen sie gehen?");
+			    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "√úberweisungsbetrag: " + economy().format(messageValue) + ". An wen sollen sie gehen?");
 
 				} break;
 
@@ -467,7 +467,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 
 		case 3: {
 	    	player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "~~~~~~~~~~~~~~~~~~~~~~");
-			player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "Überweise nun jemandem " + economy().currencyNamePlural() + ", indem du den Betrag in den Chat tippst oder klicke erneut auf das Schild.");
+			player.sendMessage(ChatColor.AQUA + "[Emerald Bank] " + ChatColor.GREEN + "√úberweise nun jemandem " + economy().currencyNamePlural() + ", indem du den Betrag in den Chat tippst oder klicke erneut auf das Schild.");
 		} break;
 
 		}
@@ -493,7 +493,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 			sign.setLine(0, " " + ChatColor.AQUA + "Emerald Bank");
 			sign.setLine(1, " " + ChatColor.AQUA + ChatColor.BOLD + "~~~~~~~~~~");
 			sign.setLine(2, " " + ChatColor.GREEN + "Schalter");
-			sign.setLine(3, " " + ChatColor.GREEN + "geöffnet");
+			sign.setLine(3, " " + ChatColor.GREEN + "ge√∂ffnet");
 		} break;
 
 		case 1: {
@@ -513,7 +513,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 		case 3: {
 			sign.setLine(0, " " + ChatColor.AQUA + "Emerald Bank");
 			sign.setLine(1, " " + ChatColor.AQUA + ChatColor.BOLD + "~~~~~~~~~~");
-			sign.setLine(2, " " + ChatColor.DARK_RED + "Überweise");
+			sign.setLine(2, " " + ChatColor.DARK_RED + "√ºberweise");
 			sign.setLine(3, " " + ChatColor.DARK_RED + "etwas");
 		} break;
 
