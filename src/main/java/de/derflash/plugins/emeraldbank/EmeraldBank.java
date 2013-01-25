@@ -1,5 +1,6 @@
 package de.derflash.plugins.emeraldbank;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import net.milkbowl.vault.economy.Economy;
@@ -22,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.Metrics;
 
 public class EmeraldBank extends JavaPlugin implements Listener {
 
@@ -51,6 +53,13 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 	
 	
     public void onEnable() {
+		try {
+		    Metrics metrics = new Metrics(this);
+		    metrics.start();
+		} catch (IOException e) {
+		    // Failed to submit the stats :-(
+		}
+		
     	if (economy() == null) {
             this.getLogger().warning("Disabling EmeraldBank plugin...");
     		this.setEnabled(false);

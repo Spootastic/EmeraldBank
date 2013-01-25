@@ -44,13 +44,33 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+         	<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.0</version>
+                <executions>
+                      <execution>
+                        <phase>package</phase>
+                        <goals>
+                              <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                              <artifactSet>
+                                <includes>
+                                    <include>org.mcstats.bukkit:metrics</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.4.5-R1.0</version>
+            <version>1.4.7-R0.1</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -64,6 +84,12 @@
         	<groupId>net.milkbowl.vault</groupId>
         	<artifactId>Vault</artifactId>
         	<version>1.2.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mcstats.bukkit</groupId>
+            <artifactId>metrics</artifactId>
+            <version>R6</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
