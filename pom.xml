@@ -31,6 +31,9 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>plugin.yml</include>
+                    <include>config.yml</include>
+                    <include>de.lang</include>
+                    <include>en.lang</include>
                 </includes>
             </resource>
         </resources>
