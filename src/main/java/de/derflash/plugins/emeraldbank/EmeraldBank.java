@@ -271,7 +271,8 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 			event.setCancelled(true);
 			
 			final int messageValue = _messageValue;
-			p.getServer().getScheduler().scheduleSyncDelayedTask(p, new Runnable() { public void run() {
+			p.getServer().getScheduler().scheduleSyncDelayedTask(p, new Runnable() { @SuppressWarnings("deprecation")
+            public void run() {
 				
 				switch (bPlayer.getState()) {
 				
@@ -333,8 +334,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 					
 					PlayerInventory inv = player.getInventory();
 
-					HashMap<Integer, ? extends ItemStack> emeraldBlocks = inv.all(Material.EMERALD_BLOCK);
-					for (ItemStack emeraldBlockStack : emeraldBlocks.values()) {
+					for (ItemStack emeraldBlockStack : inv.all(Material.EMERALD_BLOCK).values()) {
 						int amount = emeraldBlockStack.getAmount();
 
 						while (amountCheck > 0 && amount > 0) {
@@ -347,7 +347,7 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 							} else {
 								
 								// only use swapping if there are not enough emeralds
-								if (!inv.contains(new ItemStack(Material.EMERALD), amountCheck)) {
+								if (!inv.contains(Material.EMERALD, amountCheck)) {
 									int needToAdd = 9 - amountCheck;
 									
 									HashMap<Integer, ? extends ItemStack> tausch = inv.addItem(new ItemStack(Material.EMERALD, needToAdd));
@@ -360,7 +360,9 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 								    	return;
 									}
 									
-									inv.removeItem(new ItemStack(Material.EMERALD_BLOCK, 1));
+									ItemStack toRemove = inv.all(Material.EMERALD_BLOCK).values().iterator().next().clone();
+									toRemove.setAmount(1);
+									inv.removeItem(toRemove);
 									
 									amountCheck = 0;
 									amount--; // just to be sure
@@ -376,8 +378,8 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 					}
 					
 					if (amountCheck > 0) {
-						HashMap<Integer, ? extends ItemStack> emeralds = inv.all(Material.EMERALD);
-						for (ItemStack emeraldStack : emeralds.values()) {
+						for (ItemStack emeraldStack : inv.all(Material.EMERALD).values()) {
+
 							int amount = emeraldStack.getAmount();
 							while (amountCheck > 0 && amount > 0) {
 								emeraldsFound++;
@@ -393,8 +395,20 @@ public class EmeraldBank extends JavaPlugin implements Listener {
 				    	player.sendMessage(ChatColor.DARK_RED + "[Emerald Bank] " + ChatColor.WHITE + translate("notEnoughToDeposit", new String[] {"amount", new SmartAmount(amountCheck).getAmountAsString(), "currency", economy().currencyNamePlural()}));
 
 					} else {
-						if (blocksFound > 0) inv.removeItem(new ItemStack(Material.EMERALD_BLOCK, blocksFound));
-						if (emeraldsFound > 0) inv.removeItem(new ItemStack(Material.EMERALD, emeraldsFound));
+						if (blocksFound > 0) {
+                            for (int c = 0; c < blocksFound; c++) {
+                                ItemStack toRemove = inv.all(Material.EMERALD_BLOCK).values().iterator().next().clone();
+                                toRemove.setAmount(1);
+                                inv.removeItem(toRemove);
+                            }
+						}
+						if (emeraldsFound > 0) {
+                            for (int c = 0; c < emeraldsFound; c++) {
+                                ItemStack toRemove = inv.all(Material.EMERALD).values().iterator().next().clone();
+                                toRemove.setAmount(1);
+                                inv.removeItem(toRemove);
+                            }
+						}
 						
 						player.updateInventory();
 						
