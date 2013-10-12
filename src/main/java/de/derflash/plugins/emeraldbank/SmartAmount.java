@@ -32,7 +32,7 @@ public class SmartAmount {
 	
 	public String getAmountAsString() {
 		String ausgezahltS = (getEmeralds() == 0 ? null : EmeraldBank.p.economy().format(getEmeralds()) );
-		String ausgezahltP = (getEmeraldBlocks() == 0 ? null : (getEmeraldBlocks() == 1 ? "1 Smaragd Block" : (getEmeraldBlocks() + " Smaragd Blöcke") ) );
+		String ausgezahltP = (getEmeraldBlocks() == 0 ? null : (getEmeraldBlocks() == 1 ? "1 Emerald Block" : (getEmeraldBlocks() + " Emerald Block") ) );
 		
 		String ausgezahlt;
 		if (ausgezahltS != null && ausgezahltP != null) ausgezahlt = ausgezahltP + " & " + ausgezahltS;
